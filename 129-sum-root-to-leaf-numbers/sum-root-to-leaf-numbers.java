@@ -14,19 +14,18 @@
  * }
  */
 class Solution {
-    int sum=0;
+    int sum = 0;
     public int sumNumbers(TreeNode root) {
-        getSum(root,0);
+        getLeafSum(root,0);
         return sum;
     }
-    public void getSum(TreeNode root, int curNum){
+    public void getLeafSum(TreeNode root, int curSum){
         if(root==null)return;
-        curNum = curNum*10 + root.val;
+        curSum =curSum*10+root.val;
         if(root.left==null && root.right==null){
-            sum +=curNum;
-            return;
+            sum +=curSum;
         }
-        getSum(root.left,curNum);
-        getSum(root.right,curNum);
+        getLeafSum(root.left,curSum);
+        getLeafSum(root.right,curSum);
     }
 }
