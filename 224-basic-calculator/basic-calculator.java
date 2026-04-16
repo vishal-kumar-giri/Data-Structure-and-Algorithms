@@ -1,0 +1,32 @@
+class Solution {
+    public int calculate(String s) {
+      int res = 0;
+      int sign = 1;
+      Stack<Integer> st = new Stack<>();
+      for(int i=0;i<s.length();i++){
+        char ch = s.charAt(i);
+        if(Character.isDigit(ch)){
+            int num = 0;
+            while(i<s.length() && Character.isDigit(s.charAt(i))){
+                num = num*10 +(s.charAt(i) - '0');
+                i++;
+            }
+            i--;
+            res = res+sign*num;
+        }else if(ch=='+'){
+            sign = 1;
+        }else if(ch=='-'){
+            sign = -1;
+        }else if(ch=='('){
+            st.push(res);
+            st.push(sign);
+            res = 0;
+            sign = 1;
+        }else if(ch==')'){
+            res = st.pop()*res;
+            res = res + st.pop();
+        }
+      }
+      return res;  
+    }
+}
