@@ -1,12 +1,23 @@
 class Solution {
     public int search(int[] nums, int target) {
-      int ans = -1;
-      for(int i=0;i<nums.length;i++){
-        if(nums[i]==target){
-            ans = i;
-            return ans;
+        int si = 0 , ei = nums.length-1; 
+        while(si <= ei){
+            int mid = si + (ei-si)/2;
+            if(nums[mid] == target) return mid;
+            if(nums[si] <= nums[mid]){
+                if(target >= nums[si] && target < nums[mid]){
+                    ei = mid -1;
+                }else{
+                    si = mid + 1;
+                }
+            }else{
+                if(target > nums[mid] && target <= nums[ei]){
+                    si = mid +1 ;
+                }else{
+                    ei = mid - 1;
+                }
+            }
         }
-      }
-      return ans;  
+        return -1;
     }
 }
