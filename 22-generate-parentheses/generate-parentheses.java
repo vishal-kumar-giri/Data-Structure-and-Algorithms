@@ -9,13 +9,9 @@ class Solution {
             ans.add(str);
             return;
         }
-
-        // add '(' if possible
         if (open < total) {
             solve(str + "(", open + 1, close, total, ans);
         }
-
-        // add ')' only if valid
         if (close < open) {
             solve(str + ")", open, close + 1, total, ans);
         }
