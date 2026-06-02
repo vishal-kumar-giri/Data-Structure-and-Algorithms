@@ -1,21 +1,16 @@
 class Solution {
     public List<Integer> majorityElement(int[] nums) {
-        HashMap<Integer, Integer> countMap = new HashMap<>();
-        List<Integer> result = new ArrayList<>();
-        
-        // Count occurrences of each number
-        for (int num : nums) {
-            countMap.put(num, countMap.getOrDefault(num, 0) + 1);
-        }
-        
-        // Check which numbers are majority elements
-        int threshold = nums.length / 3;
-        for (Integer key : countMap.keySet()) {
-            if (countMap.get(key) > threshold) {
-                result.add(key);
+        HashMap <Integer , Integer> map = new HashMap<>();
+        for(int num : nums)map.put(num , map.getOrDefault(num , 0) + 1);
+        int n = nums.length/3;
+        List <Integer> list = new ArrayList<>();
+        for(Map.Entry <Integer , Integer> entry :map.entrySet()){
+            int key = entry.getKey();
+            int freq = entry.getValue();
+            if(freq > n){
+                list.add(key);
             }
-        }
-        
-        return result;
+        }   
+        return list;
     }
 }
