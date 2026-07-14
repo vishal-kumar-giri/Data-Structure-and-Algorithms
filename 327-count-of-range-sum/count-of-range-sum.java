@@ -25,6 +25,14 @@ class Solution {
         mergeSort(arr, left, mid, lower, upper);
         mergeSort(arr, mid + 1, right, lower, upper);
 
+        countPairs(arr, left, mid, right, lower, upper);
+
+        merge(arr, left, mid, right);
+    }
+
+    private void countPairs(long[] arr, int left, int mid, int right,
+                            int lower, int upper) {
+
         int low = mid + 1;
         int high = mid + 1;
 
@@ -38,6 +46,9 @@ class Solution {
 
             count += high - low;
         }
+    }
+
+    private void merge(long[] arr, int left, int mid, int right) {
 
         long[] temp = new long[right - left + 1];
 
@@ -59,6 +70,8 @@ class Solution {
         while (j <= right)
             temp[k++] = arr[j++];
 
-        System.arraycopy(temp, 0, arr, left, temp.length);
+        for (i = left, k = 0; i <= right; i++, k++) {
+            arr[i] = temp[k];
+        }
     }
 }
